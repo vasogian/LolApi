@@ -12,6 +12,7 @@ builder.Services.AddScoped<SummonerService>();
 builder.Services.AddScoped<ChampionMasteryService>();
 builder.Services.AddScoped<LeagueEntryService>();
 builder.Services.AddScoped<ClashPlayerService>();
+builder.Services.AddScoped<SpectatorService>();
 
 var app = builder.Build();
 
