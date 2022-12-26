@@ -19,6 +19,11 @@ namespace LolApi.Controllers
         public async Task<IActionResult> GetSummonerByName(string name)
         {
             var SummonerDTO = await _summonerService.GetSummonerByName(name);
+
+            if(SummonerDTO.Id is null)
+            {
+                return NotFound();
+            }
             
             return Ok(SummonerDTO);
         }

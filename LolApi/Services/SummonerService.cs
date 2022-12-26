@@ -14,7 +14,7 @@ namespace LolApi.Services
                 BaseAddress = new Uri("https://eun1.api.riotgames.com"),
                 Timeout = TimeSpan.FromSeconds(30)
             };
-            riotHttpClient.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-4a8d594f-5b50-4e54-b97e-9a76d66c5512");
+            riotHttpClient.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-0bd32807-31b5-4d01-a0ea-0c1597768b50");
 
             var httpResponse = await riotHttpClient.GetAsync($"/lol/summoner/v4/summoners/by-name/{name}");           
              

@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<SummonerService>();
 builder.Services.AddScoped<ChampionMasteryService>();
 builder.Services.AddScoped<LeagueEntryService>();
+builder.Services.AddScoped<ClashPlayerService>();
 
 var app = builder.Build();
 

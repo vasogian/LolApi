@@ -18,9 +18,13 @@ namespace LolApi.Controllers
 
         [HttpGet]
 
-        public async Task<ActionResult<IEnumerable<ChampionMasteryDto>>>GetChampionMasteryPts(string encryptedSummonerId)
+        public async Task<IActionResult>GetChampionMasteryPts(string encryptedSummonerId, int count = 3)
         {
-            var championMastery = await _championMasteryService.GetChampionMasteryPts(encryptedSummonerId);
+            var championMastery = await _championMasteryService.GetChampionMasteryPts(encryptedSummonerId, count);
+            if (!championMastery.Any())
+                    {
+                return NotFound();
+            }
             return Ok(championMastery);          
         }
 

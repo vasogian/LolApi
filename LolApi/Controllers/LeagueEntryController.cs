@@ -16,9 +16,14 @@ namespace LolApi.Controllers
         }
         [HttpGet]
 
-        public async Task<ActionResult<IEnumerable<LeagueEntryDTO>>> GetLeagueEntries(string encryptedSummonerId)
+        public async Task<IActionResult> GetLeagueEntries(string encryptedSummonerId)
         {
-            var getEntries = _leagueEntryService.GetLeagueEntries(encryptedSummonerId);
+            var getEntries = await _leagueEntryService.GetLeagueEntries(encryptedSummonerId);
+
+            if(!getEntries.Any())
+            {
+                return NotFound();
+            }
             return Ok(getEntries);
         }
     }
