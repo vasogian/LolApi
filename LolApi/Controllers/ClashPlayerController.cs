@@ -1,4 +1,5 @@
-﻿using LolApi.Services;
+﻿
+using LolApi.HttpClients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,15 +9,16 @@ namespace LolApi.Controllers
     [ApiController]
     public class ClashPlayerController : ControllerBase
     {
-        private readonly ClashPlayerService _clashPlayerService;
-        public ClashPlayerController(ClashPlayerService clashPlayerService)
+        private readonly RiotHttpClient _riotHttpClient;
+        public ClashPlayerController(RiotHttpClient riotHttpClient)
         {
-            _clashPlayerService = clashPlayerService;   
+            _riotHttpClient = riotHttpClient;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetClashPlayer(string summonerId)
         {
-            var clashPlayer = await _clashPlayerService.GetClashPlayer(summonerId);
+            var clashPlayer = await _riotHttpClient.GetClashPlayer(summonerId);
 
             if (!clashPlayer.Any())
             {

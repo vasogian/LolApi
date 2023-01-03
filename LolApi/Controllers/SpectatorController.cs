@@ -1,5 +1,5 @@
-﻿using LolApi.Models;
-using LolApi.Services;
+﻿using LolApi.HttpClients;
+using LolApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,17 +9,17 @@ namespace LolApi.Controllers
     [ApiController]
     public class SpectatorController : ControllerBase
     {
-        private readonly SpectatorService _spectatorService;
-        public SpectatorController(SpectatorService spectatorService)
+        private readonly RiotHttpClient _riotHttpClient;
+        public SpectatorController(RiotHttpClient riotHttpClient)
         {
-            _spectatorService = spectatorService;
+            _riotHttpClient = riotHttpClient;
         }
-       
+
         [HttpGet]
 
         public async Task<IActionResult> GetCurrentGame(string summonerId)
         {
-            var currentGame = await _spectatorService.GetCurrentGameInfo(summonerId);
+            var currentGame = await _riotHttpClient.GetCurrentGameInfo(summonerId);
 
             if(currentGame is null)
             {

@@ -1,5 +1,5 @@
-﻿using LolApi.Models;
-using LolApi.Services;
+﻿using LolApi.HttpClients;
+using LolApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,17 +10,17 @@ namespace LolApi.Controllers
     [ApiController]
     public class ChampionMasteryController : ControllerBase
     {
-        private readonly ChampionMasteryService _championMasteryService;
-        public ChampionMasteryController(ChampionMasteryService championMasteryService)
+        private readonly RiotHttpClient _riotHttpClient;
+        public ChampionMasteryController(RiotHttpClient riotHttpClient)
         {
-            _championMasteryService = championMasteryService;
+            _riotHttpClient = riotHttpClient;
         }
-
+    
         [HttpGet]
 
         public async Task<IActionResult>GetChampionMasteryPts(string encryptedSummonerId, int count = 3)
         {
-            var championMastery = await _championMasteryService.GetChampionMasteryPts(encryptedSummonerId, count);
+            var championMastery = await _riotHttpClient.GetChampionMasteryPts(encryptedSummonerId, count);
             if (!championMastery.Any())
                     {
                 return NotFound();

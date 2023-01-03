@@ -1,5 +1,5 @@
-﻿using LolApi.Models;
-using LolApi.Services;
+﻿using LolApi.HttpClients;
+using LolApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +9,16 @@ namespace LolApi.Controllers
     [ApiController]
     public class LeagueEntryController : ControllerBase
     {
-        private readonly LeagueEntryService _leagueEntryService;
-        public LeagueEntryController(LeagueEntryService leagueEntryService)
+        private readonly RiotHttpClient _riotHttpClient;
+        public LeagueEntryController(RiotHttpClient riotHttpClient)
         {
-            _leagueEntryService = leagueEntryService;   
+            _riotHttpClient = riotHttpClient;
         }
         [HttpGet]
 
         public async Task<IActionResult> GetLeagueEntries(string encryptedSummonerId)
         {
-            var getEntries = await _leagueEntryService.GetLeagueEntries(encryptedSummonerId);
+            var getEntries = await _riotHttpClient.GetLeagueEntries(encryptedSummonerId);
 
             if(!getEntries.Any())
             {

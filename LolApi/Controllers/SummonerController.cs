@@ -1,6 +1,8 @@
-﻿using LolApi.Services;
+﻿using LolApi.HttpClients;
+using LolApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using LolApi.Models;
 
 namespace LolApi.Controllers
 {
@@ -8,24 +10,44 @@ namespace LolApi.Controllers
     [ApiController]
     public class SummonerController : ControllerBase
     {
-        private readonly SummonerService _summonerService;
-        public SummonerController(SummonerService summonerService)
+        private readonly RiotHttpClient _riotHttpClient;
+        private readonly SummonerContextService _summonerContextService;
+        public SummonerController(RiotHttpClient riotHttpClient, SummonerContextService summonerContextService)
         {
-            _summonerService = summonerService;
+            _riotHttpClient = riotHttpClient;
+            _summonerContextService = summonerContextService;
         }
 
         [HttpGet]
 
         public async Task<IActionResult> GetSummonerByName(string name)
         {
-            var SummonerDTO = await _summonerService.GetSummonerByName(name);
+            var summonerDTO = await _riotHttpClient.GetSummonerByName(name);
 
-            if(SummonerDTO.Id is null)
+            if(summonerDTO.Id is null)
             {
                 return NotFound();
+            } 
+            var searchedSummoner = await _summonerContextService.GetSummonerFromDb(name);
+            if (searchedSummoner is null)
+            {
+               await _summonerContextService.AddSummonerInDb(new SummonerEntry
+                {                   
+                    SummonerName = name,
+                    NumOfTimesSearched = 1,
+                });
             }
-            
-            return Ok(SummonerDTO);
+            else
+            {
+                await _summonerContextService.UpdateSummoner(name, new SummonerEntry
+                {              
+                    SummonerName = searchedSummoner.SummonerName,
+                    NumOfTimesSearched = ++searchedSummoner.NumOfTimesSearched
+                });
+            }
+
+            return Ok(summonerDTO);         
+
         }
     }
 }
