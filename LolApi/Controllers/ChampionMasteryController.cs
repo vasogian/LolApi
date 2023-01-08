@@ -15,19 +15,20 @@ namespace LolApi.Controllers
         {
             _riotHttpClient = riotHttpClient;
         }
-    
+
         [HttpGet]
 
-        public async Task<IActionResult>GetChampionMasteryPts(string encryptedSummonerId, int count = 3)
+        public async Task<IActionResult> GetChampionMasteryPts(string summonerName, int count = 3)
         {
-            var championMastery = await _riotHttpClient.GetChampionMasteryPts(encryptedSummonerId, count);
+            var getMasteryByName = await _riotHttpClient.GetSummonerByName(summonerName);
+            var championMastery = await _riotHttpClient.GetChampionMasteryPts(getMasteryByName.Id, count);
             if (!championMastery.Any())
-                    {
+            {
                 return NotFound();
             }
-            return Ok(championMastery);          
+            return Ok(championMastery);
         }
 
-        
+
     }
 }

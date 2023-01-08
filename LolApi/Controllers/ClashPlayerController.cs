@@ -16,9 +16,10 @@ namespace LolApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetClashPlayer(string summonerId)
+        public async Task<IActionResult> GetClashPlayer(string summonerName)
         {
-            var clashPlayer = await _riotHttpClient.GetClashPlayer(summonerId);
+            var getClashPlayerByName = await _riotHttpClient.GetSummonerByName(summonerName);
+            var clashPlayer = await _riotHttpClient.GetClashPlayer(getClashPlayerByName.Id);
 
             if (!clashPlayer.Any())
             {

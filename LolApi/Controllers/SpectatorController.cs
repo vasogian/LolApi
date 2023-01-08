@@ -17,9 +17,10 @@ namespace LolApi.Controllers
 
         [HttpGet]
 
-        public async Task<IActionResult> GetCurrentGame(string summonerId)
+        public async Task<IActionResult> GetCurrentGame(string summonerName)
         {
-            var currentGame = await _riotHttpClient.GetCurrentGameInfo(summonerId);
+            var getGameByName = await _riotHttpClient.GetSummonerByName(summonerName);
+            var currentGame = await _riotHttpClient.GetCurrentGameInfo(getGameByName.Id);
 
             if(currentGame is null)
             {

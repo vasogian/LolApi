@@ -16,9 +16,10 @@ namespace LolApi.Controllers
         }
         [HttpGet]
 
-        public async Task<IActionResult> GetLeagueEntries(string encryptedSummonerId)
+        public async Task<IActionResult> GetLeagueEntries(string summonerName)
         {
-            var getEntries = await _riotHttpClient.GetLeagueEntries(encryptedSummonerId);
+            var getEntrybyName = await _riotHttpClient.GetSummonerByName(summonerName);
+            var getEntries = await _riotHttpClient.GetLeagueEntries(getEntrybyName.Id);
 
             if(!getEntries.Any())
             {

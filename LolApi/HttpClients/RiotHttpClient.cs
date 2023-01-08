@@ -7,7 +7,7 @@ namespace LolApi.HttpClients
         private readonly HttpClient _httpClient;
         public RiotHttpClient(HttpClient httpClient)
         {
-            _httpClient = httpClient;   
+            _httpClient = httpClient;
         }
 
         public async Task<SummonerDTO> GetSummonerByName(string name)
@@ -61,6 +61,17 @@ namespace LolApi.HttpClients
                 return await httpResponse.Content.ReadFromJsonAsync<CurrentGameInfo>();
             }
             return new CurrentGameInfo();
+        }
+
+        public async Task<List<string>> GetMatchHistory(string puuid)
+        {
+            var httpResponse = await _httpClient.GetAsync($"/lol/match/v5/matches/by-puuid/{puuid}/ids");
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                return await httpResponse.Content.ReadFromJsonAsync<List<string>>();
+            }
+            return new List<string>();
         }
     }
 
