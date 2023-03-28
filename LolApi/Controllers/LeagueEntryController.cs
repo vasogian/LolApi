@@ -14,8 +14,12 @@ namespace LolApi.Controllers
         {
             _riotHttpClient = riotHttpClient;
         }
+        /// <summary>
+        /// Calls Riot's api to get a summoner's current league
+        /// </summary>
+        /// <param name="summonerName">Summoner's name</param>
+        /// <returns></returns>
         [HttpGet]
-
         public async Task<IActionResult> GetLeagueEntries(string summonerName)
         {
             var getEntrybyName = await _riotHttpClient.GetSummonerByName(summonerName);

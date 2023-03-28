@@ -17,22 +17,25 @@ namespace LolApi.Controllers
             _riotHttpClient = riotHttpClient;
             _summonerContextService = summonerContextService;
         }
-
+         /// <summary>
+         /// Calls Riot's api to get a summoner by name
+         /// </summary>
+         /// <param name="name">Summoner's name</param>
+         /// <returns></returns>
         [HttpGet]
-
         public async Task<IActionResult> GetSummonerByName(string name)
         {
             var summonerDTO = await _riotHttpClient.GetSummonerByName(name);
 
-            if(summonerDTO.Id is null)
+            if (summonerDTO.Id is null)
             {
                 return NotFound();
-            } 
+            }
             var searchedSummoner = await _summonerContextService.GetSummonerFromDb(name);
             if (searchedSummoner is null)
             {
-               await _summonerContextService.AddSummonerInDb(new SummonerEntry
-                {                   
+                await _summonerContextService.AddSummonerInDb(new SummonerEntry
+                {
                     SummonerName = name,
                     NumOfTimesSearched = 1,
                 });
@@ -40,13 +43,13 @@ namespace LolApi.Controllers
             else
             {
                 await _summonerContextService.UpdateSummoner(name, new SummonerEntry
-                {              
+                {
                     SummonerName = searchedSummoner.SummonerName,
                     NumOfTimesSearched = ++searchedSummoner.NumOfTimesSearched
                 });
             }
 
-            return Ok(summonerDTO);         
+            return Ok(summonerDTO);
 
         }
     }

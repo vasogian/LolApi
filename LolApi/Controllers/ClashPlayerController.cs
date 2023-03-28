@@ -14,7 +14,11 @@ namespace LolApi.Controllers
         {
             _riotHttpClient = riotHttpClient;
         }
-
+        /// <summary>
+        /// Calls Riot's api to get a summoner's clash info
+        /// </summary>
+        /// <param name="summonerName">Summoner's name</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetClashPlayer(string summonerName)
         {

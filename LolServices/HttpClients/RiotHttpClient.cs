@@ -1,4 +1,6 @@
-﻿using LolApi.Models;
+﻿using LolApi.Database.Models;
+using LolApi.Models;
+using System.Net.Http.Json;
 
 namespace LolApi.HttpClients
 {
@@ -70,6 +72,33 @@ namespace LolApi.HttpClients
             if (httpResponse.IsSuccessStatusCode)
             {
                 return await httpResponse.Content.ReadFromJsonAsync<List<string>>();
+            }
+            return new List<string>();
+        }
+        public async Task<List<LeagueEntryDTO>> GetTftEntry(string summonerId)
+        {
+            var httpResponse = await _httpClient.GetAsync($"/tft/league/v1/entries/by-summoner/{summonerId}");
+            if(httpResponse.IsSuccessStatusCode)
+            {
+                return await httpResponse.Content.ReadFromJsonAsync<List<LeagueEntryDTO>>();
+            }
+            return new List<LeagueEntryDTO>();
+        }
+        public async Task<LeagueListDTO> GetChallLeague()
+        {
+            var httpResponse = await _httpClient.GetAsync("/tft/league/v1/challenger");
+            if(httpResponse.IsSuccessStatusCode)
+            {
+                return await httpResponse.Content.ReadFromJsonAsync<LeagueListDTO>();
+            }
+            return new LeagueListDTO();
+        }
+        public async Task<List<string>> GetTftMatchHistory(string puuid, int count = 20)
+        {
+            var response = await _httpClient.GetAsync($"https://europe.api.riotgames.com/tft/match/v1/matches/by-puuid/{puuid}/ids?count={count}");
+            if(response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<List<string>>();
             }
             return new List<string>();
         }

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LolApi</name>
+    </assembly>
+    <members>
+        <member name="M:LolApi.Controllers.ChampionMasteryController.GetChampionMasteryPts(System.String,System.Int32)">
+            <summary>
+            Calls Riot's api to get a summoner's top played champions
+            </summary>
+            <param name="summonerName">Summoner's name</param>
+            <param name="count">Number of champions</param>
+            <returns></returns>
+        </member>
+        <member name="M:LolApi.Controllers.ClashPlayerController.GetClashPlayer(System.String)">
+            <summary>
+            Calls Riot's api to get a summoner's clash info
+            </summary>
+            <param name="summonerName">Summoner's name</param>
+            <returns></returns>
+        </member>
+        <member name="M:LolApi.Controllers.LeagueEntryController.GetLeagueEntries(System.String)">
+            <summary>
+            Calls Riot's api to get a summoner's current league
+            </summary>
+            <param name="summonerName">Summoner's name</param>
+            <returns></returns>
+        </member>
+        <member name="M:LolApi.Controllers.MatchController.GetMatchHistory(System.String,System.Int32,System.Int32)">
+            <summary>
+            Calls Riot's api to get a summoner's match history
+            </summary>
+            <param name="summonerName">Summoner's name</param>
+            <param name="start"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LolApi.Controllers.SpectatorController.GetCurrentGame(System.String)">
+            <summary>
+            Calls Riot's api to get a summoner's current game
+            </summary>
+            <param name="summonerName">Summoner's name</param>
+            <returns></returns>
+        </member>
+        <member name="M:LolApi.Controllers.SummonerController.GetSummonerByName(System.String)">
+            <summary>
+            Calls Riot's api to get a summoner by name
+            </summary>
+            <param name="name">Summoner's name</param>
+            <returns></returns>
+        </member>
+        <member name="T:LolApi.Migrations.InitialState">
+            <inheritdoc />
+        </member>
+        <member name="M:LolApi.Migrations.InitialState.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LolApi.Migrations.InitialState.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LolApi.Migrations.InitialState.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
