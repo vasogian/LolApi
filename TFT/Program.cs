@@ -1,5 +1,10 @@
+
 using LolApi.HttpClients;
-using TFT.Services;
+using LolApi.Services;
+using LolApi.SummDbContext;
+using Microsoft.EntityFrameworkCore;
+using Polly;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,22 +13,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(setupAction =>
+{
+    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+    setupAction.IncludeXmlComments(xmlCommentsFullPath);
+});
+builder.Services.AddScoped<SummonerContextService>();
+builder.Services.AddDbContext<SummonerContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 builder.Services.AddHttpClient<RiotHttpClient>(config =>
 {
     config.BaseAddress = new Uri("https://eun1.api.riotgames.com");
     config.Timeout = new TimeSpan(0, 0, 45);
-<<<<<<< Updated upstream
-    config.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-c26e79d4-9610-47c5-ac0d-a17126cfe1f4");
-});
-builder.Services.AddHttpClient<TftHttpClient>(config => {
-    config.BaseAddress = new Uri("https://eun1.api.riotgames.com");
-    config.Timeout = new TimeSpan(0, 0, 45);
-    config.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-c26e79d4-9610-47c5-ac0d-a17126cfe1f4");
-=======
-    config.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-0f306110-22c1-4823-af28-b416174fbc91");
->>>>>>> Stashed changes
-});
+    config.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-3a5f3b30-7f63-43ec-8916-5a38033c96e2");
+}).AddPolicyHandler(Policy
+.HandleResult<HttpResponseMessage>(response => !response.IsSuccessStatusCode)
+.RetryAsync(3));
+
 
 
 var app = builder.Build();

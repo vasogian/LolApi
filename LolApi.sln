@@ -5,7 +5,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LolApi", "LolApi\LolApi.csproj", "{7BF06DC2-9D5C-4220-B6EC-149771C637A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFT", "TFT\TFT.csproj", "{6597BCB2-2612-493B-9ECD-86574B69B7D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFT", "TFT\TFT.csproj", "{6597BCB2-2612-493B-9ECD-86574B69B7D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LolServices", "LolServices\LolServices.csproj", "{34A45799-6B98-4556-BED1-027C9B3AAD66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolApi.Database", "LolApi.Database\LolApi.Database.csproj", "{7E0E3019-9079-4736-9996-C4B0174A7DFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{6597BCB2-2612-493B-9ECD-86574B69B7D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6597BCB2-2612-493B-9ECD-86574B69B7D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6597BCB2-2612-493B-9ECD-86574B69B7D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A45799-6B98-4556-BED1-027C9B3AAD66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A45799-6B98-4556-BED1-027C9B3AAD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A45799-6B98-4556-BED1-027C9B3AAD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A45799-6B98-4556-BED1-027C9B3AAD66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E0E3019-9079-4736-9996-C4B0174A7DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0E3019-9079-4736-9996-C4B0174A7DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0E3019-9079-4736-9996-C4B0174A7DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0E3019-9079-4736-9996-C4B0174A7DFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TFT</name>
+    </assembly>
+    <members>
+        <member name="M:TFT.Controllers.ChallengerController.GetChallLeague">
+            <summary>
+            Calls Riot's api to get a list of all challenger summoners
+            </summary>
+            <returns>A list of all challenger playersRGAPI-3a5f3b30-7f63-43ec-8916-5a38033c96e2</returns>
+        </member>
+        <member name="M:TFT.Controllers.TftEntry.GetTftEntry(System.String)">
+            <summary>
+            Calls Riot's api to get a summoner's tft league info
+            </summary>
+            <param name="summonerName">Summoner's name</param>
+            <returns>Summoner's current league</returns>
+        </member>
+        <member name="M:TFT.Controllers.TftMatchHistoryController.GetTftMatchHistory(System.String,System.Int32)">
+            <summary>
+            Calls Riot's api to get a summoner's match history
+            </summary>
+            <param name="name">Summoner's name</param>
+            <param name="count">Number of games</param>
+            <returns>A list of games</returns>
+        </member>
+    </members>
+</doc>

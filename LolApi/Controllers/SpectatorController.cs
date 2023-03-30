@@ -14,9 +14,12 @@ namespace LolApi.Controllers
         {
             _riotHttpClient = riotHttpClient;
         }
-
+        /// <summary>
+        /// Calls Riot's api to get a summoner's current game
+        /// </summary>
+        /// <param name="summonerName">Summoner's name</param>
+        /// <returns></returns>
         [HttpGet]
-
         public async Task<IActionResult> GetCurrentGame(string summonerName)
         {
             var getGameByName = await _riotHttpClient.GetSummonerByName(summonerName);

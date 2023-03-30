@@ -2,7 +2,7 @@
 using LolApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+
 
 namespace LolApi.Controllers
 {
@@ -15,9 +15,13 @@ namespace LolApi.Controllers
         {
             _riotHttpClient = riotHttpClient;
         }
-
+        /// <summary>
+        /// Calls Riot's api to get a summoner's top played champions
+        /// </summary>
+        /// <param name="summonerName">Summoner's name</param>
+        /// <param name="count">Number of champions</param>
+        /// <returns></returns>
         [HttpGet]
-
         public async Task<IActionResult> GetChampionMasteryPts(string summonerName, int count = 3)
         {
             var getMasteryByName = await _riotHttpClient.GetSummonerByName(summonerName);

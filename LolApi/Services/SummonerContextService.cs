@@ -1,6 +1,5 @@
 ﻿using LolApi.SummDbContext;
 using LolApi.Models;
-using System.Web.Http.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace LolApi.Services
