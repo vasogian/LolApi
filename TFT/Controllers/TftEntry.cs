@@ -1,10 +1,6 @@
-﻿
-
-using LolApi.Database.Models;
+﻿using LolApi.Database.Models;
 using LolApi.HttpClients;
-using LolApi.Models;
 using LolApi.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 

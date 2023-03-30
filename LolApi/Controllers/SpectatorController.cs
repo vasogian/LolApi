@@ -25,7 +25,7 @@ namespace LolApi.Controllers
             var getGameByName = await _riotHttpClient.GetSummonerByName(summonerName);
             var currentGame = await _riotHttpClient.GetCurrentGameInfo(getGameByName.Id);
 
-            if(currentGame is null)
+            if(!currentGame.participants.Any())
             {
                 return NotFound();
             }
