@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body style="background-color:aquamarine">
+    <script type="text/javascript">
+        //GetData();
+        async function getData() {
+            const response = await fetch("https://localhost:7001/api/Challenger");
+            const data = await response.json();
+            length = data.length;
+            var temp = "";
+            for (i = 0; i < length; i++) {
+                temp += "<tr>";
+                temp += "<td>" + data[i].leagueId + "</td>";
+                temp += "<td>" + data[i].Entries + "</td>";
+                temp += "<td>" + data[i].Tier + "</td>";
+                temp += "<td>" + data[i].Name + "</td>";
+                temp += "<td>" + data[i].Queue + "</td>";
+
+            }
+            document.getElementById("data").innerHTML = temp;
+        }
+    </script>
+    <table class="table table bordered">
+        <tbody id="data">
+        </tbody>
+    </table>
+    <label for="searchbar">Search Name</label>
+    <input id="searchBar" type="text">
+    <button type="button" onclick="getData()">Click me!</button>
+</body>
+</html>

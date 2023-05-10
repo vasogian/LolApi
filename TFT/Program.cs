@@ -25,7 +25,7 @@ builder.Services.AddHttpClient<RiotHttpClient>(config =>
 {
     config.BaseAddress = new Uri("https://eun1.api.riotgames.com");
     config.Timeout = new TimeSpan(0, 0, 45);
-    config.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-3a5f3b30-7f63-43ec-8916-5a38033c96e2");
+    config.DefaultRequestHeaders.Add("X-Riot-Token", "RGAPI-8c7816ab-f9cc-4372-ad70-339a6ff4dc71");
 }).AddPolicyHandler(Policy
 .HandleResult<HttpResponseMessage>(response => !response.IsSuccessStatusCode)
 .RetryAsync(3));
